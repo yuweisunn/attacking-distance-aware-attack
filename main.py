@@ -105,7 +105,7 @@ def flame(gmodel, source, x_train, y_train):
 def main():
     parser = argparse.ArgumentParser(description='Tensorflow ADA Implementation')
     parser.add_argument('--dataset', type=str, default="MNIST",
-                        help='number of epochs to train (default: 14)')
+                        help='dataset (default: MNIST)')
     parser.add_argument('--seed', type=int, default=0,
                         help='seed (default: 0)')
     parser.add_argument('--lr', type=float, default=0.001,
