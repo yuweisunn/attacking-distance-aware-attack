@@ -241,10 +241,10 @@ def main():
             
 
         # prepare the backdoor dataset of the adversary with the source and target classes.
-        source = np.array((x_train[np.isin(y_train, [i])]))
-        y_backdoor = np.ones(len(source))*s_c
+        source = np.array((x_train[np.isin(y_train, [s_c])]))
+        y_backdoor = np.ones(len(source))*i
         source_class = list(range(10))
-        source_class.pop(i)
+        source_class.pop(s_c)
         main = np.array((x_train[np.isin(y_train, source_class)]))
         y_main = np.array((y_train[np.isin(y_train, source_class)]))
         y_main = to_categorical(y_main, 10)
@@ -253,8 +253,8 @@ def main():
         main_test = np.array((x_test[np.isin(y_test, source_class)]))
         y_main_test = np.array((y_test[np.isin(y_test, source_class)]))
         y_main_test = to_categorical(y_main_test, 10)
-        source_test = np.array((x_test[np.isin(y_test, [i])]))
-        y_backdoor_test = np.ones(len(source_test))*s_c
+        source_test = np.array((x_test[np.isin(y_test, [s_c])]))
+        y_backdoor_test = np.ones(len(source_test))*i
         y_backdoor_test = to_categorical(y_backdoor_test, 10)
 
 
