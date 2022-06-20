@@ -240,22 +240,29 @@ def main():
             print(f"Source Class: {s_c}; Target Class: {i}")
             
 
-        # prepare the backdoor dataset of the adversary with the source and target classes.
+        # Prepare the backdoor dataset of the adversary with the source and target classes.
         source = np.array((x_train[np.isin(y_train, [s_c])]))
-        y_backdoor = np.ones(len(source))*i
-        source_class = list(range(10))
-        source_class.pop(s_c)
-        main = np.array((x_train[np.isin(y_train, source_class)]))
-        y_main = np.array((y_train[np.isin(y_train, source_class)]))
-        y_main = to_categorical(y_main, 10)
-        y_backdoor = to_categorical(y_backdoor, 10)
 
-        main_test = np.array((x_test[np.isin(y_test, source_class)]))
-        y_main_test = np.array((y_test[np.isin(y_test, source_class)]))
+        target_class = np.ones(len(source))*i
+        target_class = to_categorical(target_class, 10)
+        main_class = list(range(10))
+        main_class.pop(s_c)
+
+
+        # Training set
+        main = np.array((x_train[np.isin(y_train, main_class)]))
+        y_main = np.array((y_train[np.isin(y_train, main_class)]))
+        y_main = to_categorical(y_main, 10)
+
+
+        # Test set
+        main_test = np.array((x_test[np.isin(y_test, main_class)]))
+        y_main_test = np.array((y_test[np.isin(y_test, main_class)]))
         y_main_test = to_categorical(y_main_test, 10)
-        source_test = np.array((x_test[np.isin(y_test, [s_c])]))
-        y_backdoor_test = np.ones(len(source_test))*i
-        y_backdoor_test = to_categorical(y_backdoor_test, 10)
+        
+        target_test = np.array((x_test[np.isin(y_test, [s_c])]))
+        target_class_test = np.ones(len(target_test))*i
+        target_class_test = to_categorical(target_class_test, 10)
 
 
         # Every round, 450 samples of a client are randomly selected to retarin a converged global model. 
@@ -299,7 +306,7 @@ def main():
               edge_nets[0].set_weights(gmodel.get_weights())
               edge_nets[0].compile(loss='categorical_crossentropy', optimizer=Adam(learning_rate=args.lr), metrics=['accuracy'])
               x_attacker = np.concatenate((np.array((random.sample(list(source), int(setSize/2)))), np.array((x_sub))), axis = 0) 
-              y_attacker = np.concatenate((y_backdoor[:int(setSize/2)], np.array((y_sub))), axis = 0) 
+              y_attacker = np.concatenate((target_class[:int(setSize/2)], np.array((y_sub))), axis = 0) 
 
               edge_nets[0].fit(x_attacker, y_attacker, epochs=1, batch_size=16, verbose = 0, shuffle=True)
               l = edge_nets[0].get_weights()
@@ -351,9 +358,10 @@ def main():
 
           # Evaluation
           main_task_acc.append(gmodel.evaluate(main_test, y_main_test, 10, verbose=0)[1])
-          backdoor_task_acc.append(gmodel.evaluate(source_test, y_backdoor_test, verbose=0)[1])
+          backdoor_task_acc.append(gmodel.evaluate(target_test, target_class_test, verbose=0)[1])
 
           print("Attacking task accuracy: %s   Main task accuracy: %s \n" %(backdoor_task_acc[-1], main_task_acc[-1]))
+
 
 
         main_result.append(np.array((main_task_acc)))
@@ -365,10 +373,7 @@ def main():
         
         print("Attacking accuracy: %s" % np.max(np.max(backdoor_result, axis = 1)))
         print("Main task accuracy: %s" % np.min(np.min(main_result, axis = 1)))
-        
-        #filename = datetime.now().strftime("%Y%m%d-%H%M%S")
-        #np.save('%s_main' %filename, main_result)
-        #np.save('%s_backdoor' %filename, backdoor_result)
+
 
 if __name__ == '__main__':
     main()
