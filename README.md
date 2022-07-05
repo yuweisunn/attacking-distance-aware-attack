@@ -28,3 +28,15 @@ To run the algorithm with the optimized target class that was prepared beforehan
 In case, you would like to search for the optimized target class using FLAME via the backward analysis as described in the paper:
 
 	python main.py --flame
+
+## Citation 
+If this repository is helpful for your research or you want to refer the provided results in this work, you could cite the work using the following BibTeX entry:
+
+```
+@article{sun2022semitarget,
+  author = {Yuwei Sun and Hideya Ochiai and Jun Sakuma},
+  title = {Semi-Targeted Model Poisoning Attack on Federated Learning via Backward Error Analysis},
+  journal = {International Joint Conference on Neural Networks (IJCNN)},
+  year = {2022}
+}
+```
