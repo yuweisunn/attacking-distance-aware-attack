@@ -40,3 +40,8 @@ If this repository is helpful for your research or you want to refer the provide
   year = {2022}
 }
 ```
+
+## Further Reading
+[1] Journal version of the paper: [Attacking Distance-aware Attack: A Semi-targeted Poisoning Attack on Federated Learning](https://www.techrxiv.org/articles/preprint/How_the_Target_Matters_Semi-Targeted_Model_Poisoning_Attack_on_Federated_Learning/20339091)
+
+[2] A new survey paper: [Decentralized Deep Learning for Multi-Access Edge Computing: A Survey on Communication Efficiency and Trustworthiness](https://ieeexplore.ieee.org/document/9645169), IEEE Transactions on Artificial Intelligence.
