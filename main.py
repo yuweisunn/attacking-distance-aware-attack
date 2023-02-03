@@ -132,10 +132,11 @@ def main():
 
     # MNIST
     # Attacking distances for the source class '2': max '5'  min '1' 
-    s_max = 5
-    s_min = 1
-
+    
     if args.dataset == "MNIST":
+        s_max = 5
+        s_min = 1
+        
         img_rows = 28
         img_cols = 28
         channels = 1
@@ -152,10 +153,11 @@ def main():
 
     # Fashion-MNIST
     # Attacking distances for the source class '2': max '9'  min '4' 
-    s_max = 9
-    s_min = 4
 
     if args.dataset == "Fashion-MNIST":
+        s_max = 9
+        s_min = 4
+
         img_rows = 28
         img_cols = 28
         channels = 1
@@ -172,10 +174,11 @@ def main():
 
     # CIFAR-10
     # Attacking distances for the source class '2': max '9'  min '4'
-    s_max = 9
-    s_min = 4
 
     if args.dataset == "CIFAR-10":
+        s_max = 9
+        s_min = 4
+    
         img_rows = 32
         img_cols = 32
         channels = 3
