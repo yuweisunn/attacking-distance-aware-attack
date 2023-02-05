@@ -19,7 +19,7 @@ Tensorflow 2
 
 Python 3.8
 
-### Training
+### Mounting the attack
 To run the algorithm with the optimized target class that was prepared beforehand:
 
 	python main.py
@@ -28,3 +28,17 @@ To run the algorithm with the optimized target class that was prepared beforehan
 In case, you would like to search for the optimized target class using FLAME via the backward analysis as described in the paper:
 
 	python main.py --flame
+
+### Obtain the pretrained edge model
+
+In case, you would like to use a different model architecture such as VGG and train the model from scratch:
+	
+	python pretraining.py
+	
+where you can choose the dataset and model architecture you want to use in the federated learning. The learned model weights will be saved for mounting the ADA attack.
+
+### **A new survey paper
+
+We have a survey paper on decentralized deep learning regarding security and communication efficiency, published in IEEE Transactions on Artificial Intelligence, December 2022.
+
+[Decentralized Deep Learning for Multi-Access Edge Computing: A Survey on Communication Efficiency and Trustworthiness](https://ieeexplore.ieee.org/document/9645169).
