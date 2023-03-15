@@ -1,4 +1,4 @@
-## Tensorflow implementation of the paper [Semi-Targeted Model Poisoning Attack on Federated Learning via Backward Error Analysis](https://arxiv.org/abs/2203.11633) at IJCNN 2022.
+## [Semi-Targeted Model Poisoning Attack on Federated Learning via Backward Error Analysis](https://arxiv.org/abs/2203.11633) at IJCNN 2022: A Tensorflow implementation 
 
 ## Table of Contents
 * [General information](#general-information)
@@ -20,23 +20,33 @@ Tensorflow 2
 
 Python 3.8
 
-### Mounting the attack
+
+### Mounting attacks
+#### Semi-targeted ADA attack
 To run the algorithm with the optimized target class that was prepared beforehand:
 
-	python main.py
+	python main.py --dataset cifar10 --model vgg16 --ndc --seed 0 --epsilon 0.1
 	
-	
-In case, you would like to search for the optimized target class using FLAME via the backward analysis as described in the paper:
+#### "Train and scale" attack
 
-	python main.py --flame
+	python main.py --dataset cifar10 --model vgg16 --ndc --seed 0 --epsilon 0.1 --ada
 
-### Obtain the pretrained edge model
+#### Label Flipping attack	
+	
+	python main.py --dataset cifar10 --model vgg16 --ndc --seed 0 --epsilon 0.1 --ada --scale
 
-In case, you would like to use a different model architecture such as VGG and train the model from scratch:
+### Obtain the pretrained model weights
+
+In case, you would like to use a different model architecture and train the model from scratch:
 	
-	python pretraining.py
+	python pretraining.py --dataset cifar100 --model vgg16 --epoch 5 --batch 128 --sample 500
 	
-where you can choose the dataset and model architecture you want to use in the federated learning. The learned model weights will be saved for mounting the ADA attack.
+where you can choose the dataset, model architecture, local training epoch, and local batch size that you want to use. The learned model weights will be saved for mounting the ADA attack.
+
+### Flame 
+In case that you would like to compute from scratch the optimized target class using FLAME:
+
+	python main.py --dataset cifar10 --model vgg16 --ndc --seed 0 --epsilon 0.1 --flame
 
 ## Citation 
 If this repository is helpful for your research or you want to refer the provided results in this work, you could cite the work using the following BibTeX entry:
@@ -51,10 +61,10 @@ If this repository is helpful for your research or you want to refer the provide
 ```
 
 ## Further Reading
-[1] Journal version of the paper: [Attacking Distance-aware Attack: A Semi-targeted Poisoning Attack on Federated Learning](https://www.techrxiv.org/articles/preprint/How_the_Target_Matters_Semi-Targeted_Model_Poisoning_Attack_on_Federated_Learning/20339091)
+[1] Journal version of the paper: [Attacking Distance-aware Attack: Semi-targeted Model Poisoning on Federated Learning](https://www.techrxiv.org/articles/preprint/How_the_Target_Matters_Semi-Targeted_Model_Poisoning_Attack_on_Federated_Learning/20339091)
 
 
-## \*\*A new survey paper
+## A new survey paper
 
 We have a survey paper on decentralized deep learning regarding security and communication efficiency, published in IEEE Transactions on Artificial Intelligence, December 2022.
 
