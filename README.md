@@ -23,7 +23,7 @@ Python 3.8
 ### Download the pretrained model weights
 Attack was mounted when the federated learning was converged. Please first download the pretrained model weights below.
 
-Google Drive: [Pretrained model datasets](https://drive.google.com/drive/folders/1eoOkKZDuWsqJoO9Ox1IHmueRb8thsNJ9?usp=sharing) 
+Google Drive: [Pretrained model datasets](https://drive.google.com/file/d/1HfChT3hS-WBkMu82fE8bNKEqsDwoBqzZ/view?usp=sharing) 
 
 ### Mounting attacks
 #### Semi-targeted ADA attack
