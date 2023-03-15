@@ -9,10 +9,10 @@
 Attacking Distance-aware Attack (ADA) enhances a poisoning attack by finding the optimized target class in the feature space.
 
 <center>
-<img src = "semitarget.png" width = "60%"></img>
+<img src = "semitarget.png" width = "70%"></img>
 </center>
    
-This instruction describes how to mount the semi-targeted attack on three different benchmark datasets, i.e., MNIST, Fashion-MNIST, and CIFAR-10. By adjusting the attacking frequency and the participanting client number, we observe how ADA performs under different settings.
+This instruction describes how to mount the semi-targeted ADA attack and other baseline attacks on five different benchmark datasets, i.e., MNIST, Fashion-MNIST, CIFAR-10, CIFAR-100, and ImageNet. There are three model architectures that can be applied for federated learning, that is, 2-layer CNNs, VGG16, and VGG19.
 
 ## Running the systems
 ### Environment
