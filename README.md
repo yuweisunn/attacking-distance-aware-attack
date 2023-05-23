@@ -7,7 +7,7 @@
 ## Table of Contents
 * [General information](#general-information)
 * [Running the systems](#running-the-systems)
-* [A new survey paper](#a-new-survey-paper)
+* [A survey paper](#a-survey-paper)
 
 ## General information
 Attacking Distance-aware Attack (ADA) enhances a poisoning attack by finding the optimized target class in the feature space.
@@ -33,15 +33,15 @@ Google Drive: [Pretrained model datasets](https://drive.google.com/file/d/1HfChT
 #### Semi-targeted ADA attack
 To run the algorithm with the optimized target class that was prepared beforehand:
 
-	python main.py --dataset cifar10 --model vgg16 --ndc --seed 0 --epsilon 0.1
+	python main.py --dataset cifar10 --model vgg16 --seed 0 --epsilon 0.1
 	
 #### "Train and scale" attack
 
-	python main.py --dataset cifar10 --model vgg16 --ndc --seed 0 --epsilon 0.1 --ada
+	python main.py --dataset cifar10 --model vgg16 --seed 0 --epsilon 0.1 --ada
 
 #### Label Flipping attack	
 	
-	python main.py --dataset cifar10 --model vgg16 --ndc --seed 0 --epsilon 0.1 --ada --scale
+	python main.py --dataset cifar10 --model vgg16 --seed 0 --epsilon 0.1 --ada --scale
 
 ### Obtain the pretrained model weights
 
@@ -54,7 +54,12 @@ where you can choose the dataset, model architecture, local training epoch, and 
 ### Flame 
 In case that you would like to compute from scratch the optimized target class using FLAME:
 
-	python main.py --dataset cifar10 --model vgg16 --ndc --seed 0 --epsilon 0.1 --flame
+	python main.py --dataset cifar10 --model vgg16 --seed 0 --epsilon 0.1 --flame
+
+### Employ defense methods
+Four types of defense methods are avaliable: "NDC", "Krum", "TrimmedMean", and "DP" (default: None):
+	
+	python main.py --dataset cifar10 --model vgg16 --seed 0 --epsilon 0.1 --defense NDC
 
 ## Citation 
 If this repository is helpful for your research or you want to refer the provided results in this work, you could cite the work using the following BibTeX entry:
