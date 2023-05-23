@@ -122,8 +122,8 @@ def main():
                         help='regenerate the AD distribution via backward error analysis (default: False)')
     parser.add_argument('--scale', action='store_false',
                         help='apply the "Train and Scale" method (default: True)')
-    parser.add_argument('--ndc', action='store_false',
-                        help='apply the Norm Difference Clipping (NDC) (default: True)')
+    parser.add_argument('--defense', type=str, default="None",
+                        help='defense methods: NDC, Krum, TrimmedMean, DP (default: None)')
     args = parser.parse_args()
 
     np.random.seed(args.seed)
@@ -337,25 +337,31 @@ def main():
                     norm = LA.norm(np.concatenate([w.flatten() for w in l_malicious]))
                     local_updates.append(l_malicious)
                     norms.append(norm)
-              
+            
 
-          # update the boundary of the norm difference clipping (NDC) 
-          # if the NDC defense is applied, only the clients that have a qualified norm can be accepted. 
-          g = gmodel.get_weights()  
+          # when applying different defense methods
+          if args.defense == "NDC":
+              u = np.average((NDC(local_updates)), axis = 0)
 
-          benign_li = []
-          boundary = np.median(norms)
-          for i, norm_s in enumerate(norms):
-              if norm_s < boundary:
-                  benign_li.append(local_updates[i])
-          if args.ndc:
-              u = np.average((benign_li), axis = 0)
+          elif args.defense == "Krum":
+              u = np.average((Krum(local_updates,args.gamma)), axis = 0)
+
+          elif args.defense == "TrimmedMean":
+              u = np.average((TrimmedMean(local_updates,args.beta)), axis = 0)
+
+          elif args.defense == "DP":
+              u = np.average((DP(local_updates, args.std)), axis = 0)
+
           else:
               u = np.average((local_updates), axis = 0)
 
-
           # update the global model
+          g = gmodel.get_weights() 
           aggmodel = np.array(([(g[i]+u[i]) for i, w in enumerate(g)]))
+
+          if args.defense == "DP":
+            for i, w in enumerate(aggmodel):
+                aggmodel[i] = np.random.normal(0,args.std,np.array((w)).shape) + w
           gmodel.set_weights(aggmodel)
 
 
