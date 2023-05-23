@@ -71,6 +71,13 @@ If this repository is helpful for your research or you want to refer the provide
   journal = {International Joint Conference on Neural Networks (IJCNN)},
   year = {2022}
 }
+
+@article{sun2023attacking,
+  author = {Yuwei Sun and Hideya Ochiai and Jun Sakuma},
+  title = {Attacking Distance-aware Attack: Semi-targeted Model Poisoning on Federated Learning},
+  journal = {IEEE Transactions on Artificial Intelligence},
+  year = {2023}
+}
 ```
 
 ## A survey paper
