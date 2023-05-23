@@ -1,4 +1,8 @@
-## [Semi-Targeted Model Poisoning Attack on Federated Learning via Backward Error Analysis](https://arxiv.org/abs/2203.11633) at IJCNN 2022: A Tensorflow implementation 
+## Tensorflow implementation of Attacking Distance-aware Attack (ADA)
+
+[Semi-Targeted Model Poisoning Attack on Federated Learning via Backward Error Analysis](https://arxiv.org/abs/2203.11633) at IJCNN 2022
+
+[Attacking Distance-aware Attack: Semi-targeted Model Poisoning on Federated Learning](https://www.techrxiv.org/articles/preprint/How_the_Target_Matters_Semi-Targeted_Model_Poisoning_Attack_on_Federated_Learning/20339091) at IEEE Transactions on Artificial Intelligence 2023
 
 ## Table of Contents
 * [General information](#general-information)
@@ -64,11 +68,7 @@ If this repository is helpful for your research or you want to refer the provide
 }
 ```
 
-## Further Reading
-[1] Journal version of the paper: [Attacking Distance-aware Attack: Semi-targeted Model Poisoning on Federated Learning](https://www.techrxiv.org/articles/preprint/How_the_Target_Matters_Semi-Targeted_Model_Poisoning_Attack_on_Federated_Learning/20339091)
-
-
-## A new survey paper
+## A survey paper
 
 We have a survey paper on decentralized deep learning regarding security and communication efficiency, published in IEEE Transactions on Artificial Intelligence, December 2022.
 
