@@ -21,7 +21,7 @@ from numpy import linalg as LA
 import argparse
 from tensorflow.keras.applications import VGG16, VGG19, resnet50, mobilenet
 import tensorflow_datasets as tfds
-
+from defense import *
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
@@ -517,11 +517,10 @@ def main():
         
         if args.ada:
             print(f"ADA Attack on source class {s_c} based on target class {s_min}")
-           
+
         else:
-            pass
-            #print(f"Meta progress: {num}/9")
-            #print(f"Source Class: {s_c}; Target Class: {i}")
+            print(f"Meta progress: {num}/9")
+            print(f"Source Class: {s_c}; Target Class: {i}")
             
 
         # Prepare the backdoor dataset of the adversary with the source and target classes.
@@ -557,7 +556,7 @@ def main():
 
         # Adversarial training
         for i in range(50):
-          #print("Federated Learning Round: %s/%s" %(i+1,50))
+          print("Federated Learning Round: %s/%s" %(i+1,50))
 
           j = 10 # randomly select 10 clients
           action = []
@@ -650,24 +649,20 @@ def main():
           main_task_acc.append(gmodel.evaluate(main_test, y_main_test, 10, verbose=0)[1])
           backdoor_task_acc.append(gmodel.evaluate(target_test, target_class_test, verbose=0)[1])
 
-          #print("Attacking task accuracy: %s   Main task accuracy: %s \n" %(backdoor_task_acc[-1], main_task_acc[-1]))
-
-
+          print("Attacking task accuracy: %s   Main task accuracy: %s \n" %(backdoor_task_acc[-1], main_task_acc[-1]))
 
         main_result.append(np.array((main_task_acc)))
         backdoor_result.append(np.array((backdoor_task_acc)))
         
         if args.ada:
-            print("Attacking accuracy: %s" % np.max(backdoor_result[0]))
-            print("Main task accuracy: %s" % np.min(main_result[0]))
+            print("Overall attacking accuracy: %s" % np.max(backdoor_result[0]))
+            print("Overall main task accuracy: %s" % np.min(main_result[0]))
         
         ata.append(np.max(np.max(backdoor_result, axis = 1)))
         mta.append(np.min(np.min(main_result, axis = 1)))
-        print(ata[-1])
-        print(mta[-1])
 
-    print(np.mean(ata))
-    print(np.mean(mta))
+    print(f"Method attacking task performance {np.mean(ata)}")
+    print(f"Method main task performance {np.mean(mta)}")
 
 
 if __name__ == '__main__':
