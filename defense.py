@@ -51,5 +51,3 @@ def DP(local_models, std):
 
     return local_models
 
-
-
