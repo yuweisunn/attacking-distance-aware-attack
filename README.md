@@ -1,4 +1,7 @@
-## Tensorflow implementation of Attacking Distance-aware Attack (ADA)
+# Semi-Targeted Model Poisoning Attack on Federated Learning via Backward Error Analysis
+
+[![LICENSE](https://img.shields.io/badge/license-MIT-green?style=flat-square)](https://github.com/yaoyao-liu/class-incremental-learning/blob/master/LICENSE) [![Python](https://img.shields.io/badge/python-3.8-blue.svg?style=flat-square&logo=python&color=3776AB&logoColor=3776AB)](https://www.python.org/) [![Tensorflow](https://img.shields.io/badge/tensorflow-%237732a8?style=flat-square&logo=Tensorflow&color=EE4C2C)](https://www.tensorflow.org/) [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
+
 
 [Semi-Targeted Model Poisoning Attack on Federated Learning via Backward Error Analysis](https://arxiv.org/abs/2203.11633) at IJCNN 2022
 
