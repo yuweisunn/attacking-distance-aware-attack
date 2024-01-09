@@ -88,3 +88,5 @@ If this repository is helpful for your research or you want to refer the provide
 We have a survey paper on decentralized deep learning regarding security and communication efficiency, published in IEEE Transactions on Artificial Intelligence, December 2022.
 
 [Decentralized Deep Learning for Multi-Access Edge Computing: A Survey on Communication Efficiency and Trustworthiness](https://ieeexplore.ieee.org/document/9645169).
+
+![visitors](https://visitor-badge.laobi.icu/badge?page_id=yuweisun.ada&left_color=green&right_color=red)
